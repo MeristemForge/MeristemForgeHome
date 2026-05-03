@@ -47,5 +47,5 @@ export default {
     upload: '上传',
     backToProjects: '← 返回项目列表',
   },
-  footer: '© 2025 MeristemForge。一次提交，生长一寸。',
+  footer: '© 2026 MeristemForge。一次提交，生长一寸。',
 }

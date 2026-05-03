@@ -48,5 +48,5 @@ export default {
     upload: 'Upload',
     backToProjects: '← Back to Projects',
   },
-  footer: '© 2025 MeristemForge. Growing open source, one commit at a time.',
+  footer: '© 2026 MeristemForge. Growing open source, one commit at a time.',
 }
