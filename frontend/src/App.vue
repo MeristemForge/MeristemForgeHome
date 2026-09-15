@@ -17,7 +17,7 @@ const route = useRoute()
     </RouterView>
   </main>
   <footer class="site-footer">
-    <span>{{ $t('footer') }}</span>
+    <span>{{ $t('footer.copyright') }}</span>
   </footer>
 </template>
 

@@ -10,6 +10,7 @@ const auth = useAuthStore()
 function toggleLocale() {
   locale.value = locale.value === 'en' ? 'zh' : 'en'
   localStorage.setItem('locale', locale.value)
+  document.documentElement.lang = locale.value === 'zh' ? 'zh-CN' : 'en'
 }
 </script>
 
