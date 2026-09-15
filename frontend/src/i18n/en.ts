@@ -4,6 +4,7 @@ export default {
     workflow: 'How It Works',
     about: 'About',
     language: 'Switch to Chinese',
+    ariaLabel: 'Primary navigation',
     projects: 'Projects',
     admin: 'Admin',
   },

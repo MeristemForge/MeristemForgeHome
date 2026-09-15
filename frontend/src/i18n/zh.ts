@@ -4,6 +4,7 @@ export default {
     workflow: '工作方式',
     about: '关于',
     language: '切换到英文',
+    ariaLabel: '主导航',
     projects: '项目',
     admin: '管理',
   },

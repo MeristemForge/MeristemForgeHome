@@ -13,7 +13,7 @@ function toggleLocale() {
 </script>
 
 <template>
-  <nav class="navbar" aria-label="Primary navigation">
+  <nav class="navbar" :aria-label="t('nav.ariaLabel')">
     <div class="navbar__inner">
       <a class="brand" href="#top">
         <img :src="'/meristemforge-icon.svg'" alt="" />

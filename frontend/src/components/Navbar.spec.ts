@@ -31,7 +31,7 @@ describe('Navbar', () => {
   it('links to the product sections without a project route', () => {
     const { wrapper } = renderNavbar()
 
-    expect(wrapper.get('nav').attributes('aria-label')).toBe('Primary navigation')
+    expect(wrapper.get('nav').attributes('aria-label')).toBe('主导航')
     expect(wrapper.get('a[href="#top"]').text()).toBe('MeristemForge')
     expect(wrapper.get('a[href="#top"] img').attributes('src')).toBe('/meristemforge-icon.svg')
     expect(wrapper.get('a[href="#capabilities"]').text()).toBe(zh.nav.capabilities)
@@ -49,6 +49,12 @@ describe('Navbar', () => {
     expect(button.attributes('disabled')).toBeDefined()
     expect(button.classes()).toContain('download-status--compact')
     expect(button.text()).toBe(zh.release.button)
+  })
+
+  it('labels the navigation landmark in English for English visitors', () => {
+    const { wrapper } = renderNavbar('en')
+
+    expect(wrapper.get('nav').attributes('aria-label')).toBe('Primary navigation')
   })
 
   it('switches Chinese to English and persists the document language', async () => {
