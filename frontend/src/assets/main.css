@@ -22,11 +22,11 @@ button { color: inherit; }
     linear-gradient(140deg, #43dce4 0%, #35b8ee 23%, #4e91f5 45%, #896af2 67%, #bd5dec 83%, #ef53dd 100%);
 }
 
-.section-shell { width: min(1180px, calc(100% - 64px)); margin-inline: auto; scroll-margin-top: 110px; }
+.section-shell { width: min(1180px, calc(100% - 64px)); margin-inline: auto; scroll-margin-top: 24px; }
 .glass-panel { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.4); box-shadow: 0 24px 64px rgba(54,52,153,.15); backdrop-filter: blur(24px); }
 .eyebrow { margin: 0 0 12px; color: rgba(255,255,255,.88); font-size: .82rem; font-weight: 600; }
 
-.navbar { position: fixed; inset: 0 0 auto; z-index: 20; padding: 16px 0; }
+.navbar { position: relative; z-index: 20; padding: 16px 0; }
 .navbar__inner { width: min(1180px, calc(100% - 40px)); margin: auto; padding: 10px 14px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; text-shadow: 0 2px 12px rgba(25,35,95,.55), 0 1px 1px rgba(25,35,95,.7); }
 .brand, .nav-actions, .nav-links { display: flex; align-items: center; }
 .brand { gap: 9px; font-weight: 650; white-space: nowrap; }
@@ -44,7 +44,7 @@ button { color: inherit; }
 .download-status--compact { padding: 8px 13px; font-size: .8rem; }
 a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; box-shadow: 0 0 0 7px rgba(58,30,111,.7); }
 
-.hero { min-height: 760px; padding: 150px 0 100px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 28px; }
+.hero { min-height: 760px; padding: 70px 0 100px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 28px; }
 .hero__copy { padding: 0; text-shadow: 0 2px 12px rgba(25,35,95,.55), 0 1px 1px rgba(25,35,95,.7); }
 .hero .eyebrow { color: #fff; }
 .hero h1 { max-width: 680px; margin: 0 0 18px; font-size: clamp(2.6rem, 5vw, 4.7rem); font-weight: 620; line-height: 1.13; letter-spacing: -.035em; text-wrap: balance; }
@@ -91,7 +91,7 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
 .release { padding-bottom: 92px; }
 .release__panel { padding: clamp(42px, 6vw, 72px) 24px; border-radius: 30px; text-align: center; background: rgba(60,43,143,.24); }
 .release__panel .download-status { margin-top: 12px; }
-.site-footer { width: min(1180px, calc(100% - 64px)); margin: auto; padding: 0 0 36px; display: flex; justify-content: space-between; color: #fff; font-size: .82rem; scroll-margin-top: 110px; }
+.site-footer { width: min(1180px, calc(100% - 64px)); margin: auto; padding: 0 0 36px; display: flex; justify-content: space-between; color: #fff; font-size: .82rem; scroll-margin-top: 24px; }
 
 @keyframes duck-float { 0%,100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-12px) rotate(-1deg); } }
 
@@ -103,7 +103,7 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
 }
 
 @media (max-width: 920px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 140px; text-align: center; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 64px; text-align: center; }
   .hero h1 { margin-inline: auto; }
   .hero__description { margin-inline: auto; }
   .hero__actions { justify-content: center; }
@@ -113,11 +113,12 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
 
 @media (max-width: 640px) {
   .section-shell { width: min(100% - 32px, 1180px); }
-  .navbar__inner { width: calc(100% - 24px); grid-template-columns: 1fr auto; backdrop-filter: none; }
+  .navbar__inner { width: calc(100% - 24px); grid-template-columns: 1fr auto; gap: 12px; }
   .brand { font-size: .92rem; }
-  .nav-links { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; justify-content: space-around; padding: 10px; border: 1px solid rgba(255,255,255,.42); border-radius: 16px; background: rgba(64,63,164,.72); backdrop-filter: blur(22px); }
+  .nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: space-around; }
+  .nav-actions { grid-column: 2; grid-row: 1; }
   .nav-actions .download-status { display: none; }
-  .hero { padding: 126px 0 74px; }
+  .hero { padding: 34px 0 74px; }
   .hero h1 { font-size: clamp(2.35rem, 12vw, 3.5rem); }
   .duck-stage { min-height: 320px; }
   .duck-mascot { width: min(92%, 390px); }
@@ -125,7 +126,7 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
   .benefit-grid { grid-template-columns: 1fr; }
   .workflow__preview { height: 230px; }
   .release { padding-bottom: 65px; }
-  .site-footer { width: calc(100% - 32px); flex-direction: column; gap: 8px; padding-bottom: 88px; text-align: center; }
+  .site-footer { width: calc(100% - 32px); flex-direction: column; gap: 8px; padding-bottom: 36px; text-align: center; }
 }
 
 @media (max-width: 360px) {
