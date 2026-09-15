@@ -27,14 +27,14 @@ button { color: inherit; }
 .eyebrow { margin: 0 0 12px; color: rgba(255,255,255,.88); font-size: .82rem; font-weight: 600; }
 
 .navbar { position: fixed; inset: 0 0 auto; z-index: 20; padding: 16px 0; }
-.navbar__inner { width: min(1180px, calc(100% - 40px)); margin: auto; padding: 10px 14px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; border: 1px solid rgba(255,255,255,.4); border-radius: 18px; background: rgba(47,78,163,.48); box-shadow: 0 14px 35px rgba(43,55,128,.15); backdrop-filter: blur(20px); }
+.navbar__inner { width: min(1180px, calc(100% - 40px)); margin: auto; padding: 10px 14px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; text-shadow: 0 2px 12px rgba(25,35,95,.55), 0 1px 1px rgba(25,35,95,.7); }
 .brand, .nav-actions, .nav-links { display: flex; align-items: center; }
 .brand { gap: 9px; font-weight: 650; white-space: nowrap; }
 .brand img { width: 30px; height: 30px; }
 .nav-links { gap: 24px; font-size: .85rem; white-space: nowrap; }
 .nav-links a:hover, .secondary-action:hover { color: #fff; background: rgba(255,255,255,.18); }
 .nav-links a { padding: 7px 5px; border-radius: 8px; }
-.nav-actions { justify-content: flex-end; gap: 10px; }
+.nav-actions { justify-content: flex-end; gap: 10px; text-shadow: none; }
 .language-switch, .secondary-action, .download-status { border-radius: 11px; padding: 10px 16px; }
 .language-switch, .secondary-action { border: 1px solid rgba(255,255,255,.6); background: rgba(43,57,140,.23); cursor: pointer; }
 .language-switch { white-space: nowrap; }
@@ -45,7 +45,8 @@ button { color: inherit; }
 a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; box-shadow: 0 0 0 7px rgba(58,30,111,.7); }
 
 .hero { min-height: 760px; padding: 150px 0 100px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 28px; }
-.hero__copy { padding: clamp(24px, 3vw, 48px); border: 1px solid rgba(255,255,255,.35); border-radius: 30px; background: rgba(26,42,117,.72); box-shadow: 0 24px 60px rgba(31,42,115,.16); backdrop-filter: blur(18px); }
+.hero__copy { padding: 0; text-shadow: 0 2px 12px rgba(25,35,95,.55), 0 1px 1px rgba(25,35,95,.7); }
+.hero .eyebrow { color: #fff; }
 .hero h1 { max-width: 680px; margin: 0 0 18px; font-size: clamp(2.6rem, 5vw, 4.7rem); font-weight: 620; line-height: 1.13; letter-spacing: -.035em; text-wrap: balance; }
 .hero__description { max-width: 630px; color: #fff; font-size: clamp(1rem, 1.4vw, 1.16rem); line-height: 1.9; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; text-shadow: none; }
