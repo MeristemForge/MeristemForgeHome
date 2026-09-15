@@ -26,4 +26,29 @@ describe('Home', () => {
     expect(wrapper.get('[data-testid="hero-download"]').attributes('disabled')).toBeDefined()
     expect(wrapper.get('a[href="#capabilities"]').text()).toBe('查看创作能力')
   })
+
+  it('renders four ordered playing-card creative modules', () => {
+    const wrapper = renderHome()
+    const cards = wrapper.findAll('[data-testid="capability-card"]')
+    expect(cards).toHaveLength(4)
+    expect(cards.map((card) => card.attributes('data-capability'))).toEqual([
+      'video',
+      'image',
+      'music',
+      'voice',
+    ])
+    expect(cards.map((card) => card.get('.capability-card__number').text())).toEqual([
+      '01',
+      '02',
+      '03',
+      '04',
+    ])
+    expect(cards[3].get('h3').text()).toBe('AI 配音与音色克隆')
+  })
+
+  it('provides an existing destination for the hero Explore link', () => {
+    const wrapper = renderHome()
+    const destination = wrapper.get('a[href="#capabilities"]').attributes('href') ?? ''
+    expect(wrapper.find(destination).exists()).toBe(true)
+  })
 })
