@@ -44,7 +44,7 @@ button { color: inherit; }
 a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; box-shadow: 0 0 0 7px rgba(58,30,111,.7); }
 
 .hero { min-height: 760px; padding: 150px 0 100px; display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 28px; }
-.hero__copy { padding: 25px 0; text-shadow: 0 2px 12px rgba(16,67,125,.27); }
+.hero__copy { padding: clamp(24px, 3vw, 48px); border: 1px solid rgba(255,255,255,.35); border-radius: 30px; background: rgba(26,42,117,.72); box-shadow: 0 24px 60px rgba(31,42,115,.16); backdrop-filter: blur(18px); }
 .hero h1 { max-width: 680px; margin: 0 0 18px; font-size: clamp(2.6rem, 5vw, 4.7rem); font-weight: 620; line-height: 1.13; letter-spacing: -.035em; text-wrap: balance; }
 .hero__description { max-width: 630px; color: #fff; font-size: clamp(1rem, 1.4vw, 1.16rem); line-height: 1.9; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; text-shadow: none; }
@@ -93,6 +93,11 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
 
 @keyframes duck-float { 0%,100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-12px) rotate(-1deg); } }
 
+@media (max-width: 1200px) {
+  .capability-row { grid-auto-flow: column; grid-auto-columns: minmax(250px, 42vw); grid-template-columns: none; overflow-x: auto; padding: 22px 20px 34px; margin-inline: -20px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+  .capability-card { scroll-snap-align: center; }
+}
+
 @media (max-width: 920px) {
   .navbar__inner { grid-template-columns: 1fr auto auto; }
   .nav-links { gap: 14px; font-size: .76rem; }
@@ -101,8 +106,6 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
   .hero__description { margin-inline: auto; }
   .hero__actions { justify-content: center; }
   .duck-stage { min-height: 370px; }
-  .capability-row { grid-auto-flow: column; grid-auto-columns: minmax(250px, 42vw); grid-template-columns: none; overflow-x: auto; padding: 22px 20px 34px; margin-inline: -20px; scroll-snap-type: x mandatory; scrollbar-width: thin; }
-  .capability-card { scroll-snap-align: center; }
   .workflow__panel { grid-template-columns: 1fr; gap: 28px; }
 }
 
@@ -121,6 +124,11 @@ a:focus-visible, button:focus-visible, .capability-card:focus-visible { outline:
   .workflow__preview { height: 230px; }
   .release { padding-bottom: 65px; }
   .site-footer { width: calc(100% - 32px); flex-direction: column; gap: 8px; padding-bottom: 88px; text-align: center; }
+}
+
+@media (max-width: 360px) {
+  .nav-links { gap: 0; white-space: normal; }
+  .nav-links a { flex: 1; min-width: 0; text-align: center; line-height: 1.25; }
 }
 
 @media (prefers-reduced-motion: reduce) {
