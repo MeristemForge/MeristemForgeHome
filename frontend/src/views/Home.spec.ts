@@ -8,15 +8,7 @@ import Home from './Home.vue'
 
 function renderHome() {
   const i18n = createI18n({ legacy: false, locale: 'zh', messages: { zh, en } })
-  return mount(Home, {
-    global: {
-      plugins: [i18n],
-      stubs: {
-        RouterLink: { template: '<a><slot /></a>' },
-        ParticleCanvas: true,
-      },
-    },
-  })
+  return mount(Home, { global: { plugins: [i18n] } })
 }
 
 describe('Home', () => {
@@ -64,7 +56,12 @@ describe('Home', () => {
     const i18n = createI18n({ legacy: false, locale: 'zh', messages: { zh, en } })
     const wrapper = mount(App, { global: { plugins: [i18n] } })
     expect(wrapper.get('main #top').attributes('id')).toBe('top')
+    expect(wrapper.get('main').findAll('section').map((section) => section.attributes('id'))).toEqual([
+      'top',
+      'capabilities',
+      'workflow',
+      'release',
+    ])
     expect(wrapper.get('#about').text()).toContain('创造，不止一种形状。')
-    expect(wrapper.find('router-view').exists()).toBe(false)
   })
 })
