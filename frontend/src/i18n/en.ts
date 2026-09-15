@@ -1,52 +1,61 @@
 export default {
   nav: {
-    projects: 'Projects',
+    capabilities: 'Creative Capabilities',
+    workflow: 'How It Works',
     about: 'About',
-    admin: 'Admin',
+    language: 'Switch to Chinese',
   },
   hero: {
-    title: 'Cultivating Code',
+    eyebrow: 'An All-in-One AI Creative Workspace',
+    title: 'Give Every Idea a Shape of Its Own',
     subtitle:
-      'Planting seeds today, growing into the future. We build foundational libraries that power the next generation of software.',
-    cta: 'Explore Projects',
+      'Create video, images, music, and voice in one local workspace. Manage models, assets, and projects together, so complex workflows feel simple and natural.',
+    explore: 'Explore Capabilities',
+    mascotAlt: 'MeristemForge white duck mascot',
   },
-  projects: {
-    title: 'Open Source Roots',
-    subtitle:
-      'Every great system starts with strong foundations. Our projects are the roots that support complex applications above.',
-    download: 'Download',
-    version: 'Versions',
-    platforms: 'Platforms',
-    changelog: 'Changelog',
-    noVersions: 'No versions released yet.',
+  capabilities: {
+    eyebrow: 'Creative Capabilities',
+    title: 'From Visuals to Sound, Let Ideas Grow',
+    subtitle: 'Four ways to create, brought together in one workspace.',
+    items: {
+      video: {
+        label: 'Video Creation',
+        description: 'Turn prompts, references, and shot plans into high-quality video.',
+      },
+      image: {
+        label: 'Image Creation',
+        description: 'Generate and edit images to build reusable visual assets.',
+      },
+      music: {
+        label: 'Music Creation',
+        description: 'Take a melody idea all the way to a complete soundtrack.',
+      },
+      voice: {
+        label: 'AI Dubbing & Voice Cloning',
+        description: 'Create natural, expressive speech and a reusable voice identity.',
+      },
+    },
   },
-  admin: {
-    login: 'Admin Login',
-    username: 'Username',
-    password: 'Password',
-    submit: 'Login',
-    logout: 'Logout',
-    createProject: 'New Project',
-    editProject: 'Edit Project',
-    deleteProject: 'Delete Project',
-    createVersion: 'New Version',
-    uploadFiles: 'Upload Files',
-    projectName: 'Project Name',
-    icon: 'Icon (emoji)',
-    descriptionEn: 'Description (EN)',
-    descriptionZh: 'Description (ZH)',
-    save: 'Save',
-    cancel: 'Cancel',
-    confirmDelete: 'Are you sure you want to delete this project?',
-    versionNumber: 'Version Number',
-    changelogEn: 'Changelog (EN)',
-    changelogZh: 'Changelog (ZH)',
-    manageVersions: 'Manage Versions',
-    fileType: 'File Type',
-    platform: 'Platform',
-    selectFile: 'Select File',
-    upload: 'Upload',
-    backToProjects: '← Back to Projects',
+  workflow: {
+    eyebrow: 'Create Locally. Stay in Control.',
+    title: 'Complex Tools, Simply Brought Together',
+    description:
+      'Shared projects, an asset library, and local model management connect all four creative modules. You control your workflow, files, and creative pace.',
+    benefits: [
+      'Local models and assets',
+      'Unified project management',
+      'Assets reused across modules',
+      'An interface made for creators',
+    ],
   },
-  footer: '© 2026 MeristemForge. Growing open source, one commit at a time.',
+  release: {
+    eyebrow: 'MeristemForge for Windows',
+    title: 'Your Next Creative Journey Is About to Begin',
+    description: 'Our first public release is in the works.',
+    button: 'Windows Release Coming Soon',
+  },
+  footer: {
+    tagline: 'Creativity Has More Than One Shape.',
+    copyright: '© 2026 MeristemForge.',
+  },
 }
