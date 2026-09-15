@@ -27,7 +27,7 @@ function toggleLocale() {
       <div class="nav-actions">
         <button
           data-testid="language-switch"
-          class="language-switch lang-switch"
+          class="language-switch"
           type="button"
           :aria-label="t('nav.language')"
           @click="toggleLocale"

@@ -1,14 +1,10 @@
 import { mount } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import en from '@/i18n/en'
 import zh from '@/i18n/zh'
 import DownloadStatus from './DownloadStatus.vue'
 import Navbar from './Navbar.vue'
-
-vi.mock('@/stores/auth', () => ({
-  useAuthStore: () => ({ isAuthenticated: false }),
-}))
 
 function renderNavbar(initialLocale: 'zh' | 'en' = 'zh') {
   const i18n = createI18n({
@@ -17,18 +13,13 @@ function renderNavbar(initialLocale: 'zh' | 'en' = 'zh') {
     messages: { zh, en },
   })
 
-  const wrapper = mount(Navbar, {
-    global: {
-      plugins: [i18n],
-      stubs: { RouterLink: { template: '<a><slot /></a>' } },
-    },
-  })
+  const wrapper = mount(Navbar, { global: { plugins: [i18n] } })
 
   return { wrapper, i18n }
 }
 
 describe('Navbar', () => {
-  it('links to the product sections without a project route', () => {
+  it('links to the product sections', () => {
     const { wrapper } = renderNavbar()
 
     expect(wrapper.get('nav').attributes('aria-label')).toBe('主导航')
@@ -37,8 +28,6 @@ describe('Navbar', () => {
     expect(wrapper.get('a[href="#capabilities"]').text()).toBe(zh.nav.capabilities)
     expect(wrapper.get('a[href="#workflow"]').text()).toBe(zh.nav.workflow)
     expect(wrapper.get('a[href="#about"]').text()).toBe(zh.nav.about)
-    expect(wrapper.find('a[href="/projects"]').exists()).toBe(false)
-    expect(wrapper.html()).not.toContain('/projects')
   })
 
   it('shows a disabled, compact Windows release status', () => {
@@ -60,6 +49,7 @@ describe('Navbar', () => {
   it('switches Chinese to English and persists the document language', async () => {
     const { wrapper, i18n } = renderNavbar()
     const button = wrapper.get('[data-testid="language-switch"]')
+    expect(button.classes()).toEqual(['language-switch'])
     expect(button.attributes('aria-label')).toBe(zh.nav.language)
 
     await button.trigger('click')

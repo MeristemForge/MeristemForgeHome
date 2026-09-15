@@ -1,5 +1,4 @@
 import { describe, expect, it, vi } from 'vitest'
-import { createI18n } from 'vue-i18n'
 import en from './en'
 import zh from './zh'
 
@@ -17,9 +16,11 @@ describe.each([
   ['English', en],
 ])('%s product website messages', (_, messages) => {
   it('defines the complete section contract', () => {
-    expect(Object.keys(messages).slice(0, 5)).toEqual(Object.keys(expectedKeys).slice(0, 5))
+    expect(Object.keys(messages)).toEqual(Object.keys(expectedKeys))
     for (const [section, keys] of Object.entries(expectedKeys)) {
-      expect(Object.keys(messages[section as keyof typeof messages]).slice(0, keys.length)).toEqual(keys)
+      expect(Object.keys(messages[section as keyof typeof messages])).toEqual(
+        section === 'nav' ? [...keys, 'ariaLabel'] : keys,
+      )
     }
   })
 
@@ -45,35 +46,6 @@ describe.each([
     expect(messages.footer.tagline.trim()).not.toBe('')
     expect(messages.workflow.benefits).toHaveLength(4)
     expect(messages.workflow.benefits.every((benefit) => benefit.trim())).toBe(true)
-  })
-})
-
-const legacyKeys = [
-  'nav.projects', 'nav.admin', 'hero.cta',
-  'projects.title', 'projects.subtitle', 'projects.download',
-  'projects.version', 'projects.platforms', 'projects.changelog',
-  'projects.noVersions',
-  'admin.login', 'admin.username', 'admin.password', 'admin.submit',
-  'admin.logout', 'admin.createProject', 'admin.editProject',
-  'admin.deleteProject', 'admin.createVersion', 'admin.uploadFiles',
-  'admin.projectName', 'admin.icon', 'admin.descriptionEn',
-  'admin.descriptionZh', 'admin.save', 'admin.cancel',
-  'admin.confirmDelete', 'admin.versionNumber', 'admin.changelogEn',
-  'admin.changelogZh', 'admin.manageVersions', 'admin.fileType',
-  'admin.platform', 'admin.selectFile', 'admin.upload',
-  'admin.backToProjects',
-]
-
-describe.each([
-  ['Chinese', zh],
-  ['English', en],
-])('%s legacy-page compatibility', (_, messages) => {
-  it('still resolves every translation used by the old pages', () => {
-    const i18n = createI18n({ legacy: false, locale: 'en', messages: { en: messages } })
-    for (const key of legacyKeys) {
-      expect(i18n.global.te(key), key).toBe(true)
-      expect(i18n.global.t(key), key).not.toBe(key)
-    }
   })
 })
 
