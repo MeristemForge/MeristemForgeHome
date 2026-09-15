@@ -16,7 +16,6 @@ function toggleLocale() {
   <nav class="navbar" :aria-label="t('nav.ariaLabel')">
     <div class="navbar__inner">
       <a class="brand" href="#top">
-        <img :src="'/meristemforge-icon.svg'" alt="" />
         MeristemForge
       </a>
       <div class="nav-links">

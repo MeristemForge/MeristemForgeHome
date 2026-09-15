@@ -24,7 +24,7 @@ describe('Navbar', () => {
 
     expect(wrapper.get('nav').attributes('aria-label')).toBe('主导航')
     expect(wrapper.get('a[href="#top"]').text()).toBe('MeristemForge')
-    expect(wrapper.get('a[href="#top"] img').attributes('src')).toBe('/meristemforge-icon.svg')
+    expect(wrapper.find('a[href="#top"] img').exists()).toBe(false)
     expect(wrapper.get('a[href="#capabilities"]').text()).toBe(zh.nav.capabilities)
     expect(wrapper.get('a[href="#workflow"]').text()).toBe(zh.nav.workflow)
     expect(wrapper.get('a[href="#about"]').text()).toBe(zh.nav.about)
