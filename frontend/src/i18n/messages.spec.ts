@@ -1,6 +1,14 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, expectTypeOf, it, vi } from 'vitest'
+import type { MessageSchema } from './schema'
 import en from './en'
 import zh from './zh'
+
+describe('message schema', () => {
+  it('matches the compile-time locale contract', () => {
+    expectTypeOf(zh).toMatchTypeOf<MessageSchema>()
+    expectTypeOf(en).toMatchTypeOf<MessageSchema>()
+  })
+})
 
 const expectedKeys = {
   nav: ['capabilities', 'workflow', 'about', 'language'],

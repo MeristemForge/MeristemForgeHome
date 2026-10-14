@@ -1,4 +1,6 @@
-export default {
+import type { MessageSchema } from './schema'
+
+const en = {
   nav: { capabilities: 'Creative Capabilities', workflow: 'How It Works', about: 'About', language: 'Switch to Chinese', ariaLabel: 'Primary navigation' },
   hero: {
     eyebrow: 'An All-in-One AI Creative Workspace',
@@ -38,4 +40,6 @@ export default {
     note3: 'Continuous improvements for creators',
   },
   footer: { tagline: 'Creativity Has More Than One Shape.', copyright: '© 2026 MeristemForge.' },
-}
+} satisfies MessageSchema
+
+export default en

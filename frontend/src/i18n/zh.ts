@@ -1,4 +1,6 @@
-export default {
+import type { MessageSchema } from './schema'
+
+const zh = {
   nav: {
     capabilities: '创作能力',
     workflow: '工作方式',
@@ -44,4 +46,6 @@ export default {
     note3: '持续优化创作体验',
   },
   footer: { tagline: '创造，不止一种形状。', copyright: '© 2026 MeristemForge.' },
-}
+} satisfies MessageSchema
+
+export default zh
