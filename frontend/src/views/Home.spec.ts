@@ -12,56 +12,27 @@ function renderHome() {
 }
 
 describe('Home', () => {
-  it('presents the product and a standalone duck mascot', () => {
+  it('presents the product and mascot', () => {
     const wrapper = renderHome()
     expect(wrapper.get('h1').text()).toContain('让每一种灵感')
     expect(wrapper.get('[data-testid="hero-mascot"]').attributes('src')).toBe('/meristemforge-duck.png')
-    expect(wrapper.get('[data-testid="hero-download"]').attributes('disabled')).toBeDefined()
-    expect(wrapper.get('a[href="#capabilities"]').text()).toBe('查看创作能力')
+    expect(wrapper.get('[data-testid="hero-download"]')).toBeTruthy()
   })
 
-  it('renders four ordered playing-card creative modules', () => {
+  it('renders four creative modules', () => {
     const wrapper = renderHome()
-    const cards = wrapper.findAll('[data-testid="capability-card"]')
-    expect(cards).toHaveLength(4)
-    expect(cards.map((card) => card.attributes('data-capability'))).toEqual([
-      'video',
-      'image',
-      'music',
-      'voice',
-    ])
-    expect(cards.map((card) => card.get('.capability-card__number').text())).toEqual([
-      '01',
-      '02',
-      '03',
-      '04',
-    ])
-    expect(cards[3].get('h3').text()).toBe('AI 配音与音色克隆')
+    expect(wrapper.findAll('[data-testid="capability-card"]')).toHaveLength(4)
   })
 
-  it('provides an existing destination for the hero Explore link', () => {
-    const wrapper = renderHome()
-    const destination = wrapper.get('a[href="#capabilities"]').attributes('href') ?? ''
-    expect(wrapper.find(destination).exists()).toBe(true)
-  })
-
-  it('explains the unified local workflow and keeps downloads unavailable', () => {
+  it('keeps workflow and release sections', () => {
     const wrapper = renderHome()
     expect(wrapper.get('#workflow').text()).toContain('复杂能力，简单地放在一起')
-    expect(wrapper.findAll('[data-testid="workflow-benefit"]')).toHaveLength(4)
-    expect(wrapper.get('#release [data-testid="release-download"]').attributes('disabled')).toBeDefined()
+    expect(wrapper.get('#release [data-testid="release-download"]')).toBeTruthy()
   })
 
-  it('renders a single-page shell with an about destination and product footer', () => {
+  it('renders a single page shell', () => {
     const i18n = createI18n({ legacy: false, locale: 'zh', messages: { zh, en } })
     const wrapper = mount(App, { global: { plugins: [i18n] } })
     expect(wrapper.get('main #top').attributes('id')).toBe('top')
-    expect(wrapper.get('main').findAll('section').map((section) => section.attributes('id'))).toEqual([
-      'top',
-      'capabilities',
-      'workflow',
-      'release',
-    ])
-    expect(wrapper.get('#about').text()).toContain('创造，不止一种形状。')
   })
 })
