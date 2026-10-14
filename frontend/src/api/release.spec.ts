@@ -49,6 +49,37 @@ describe('normalizeRelease', () => {
     const release = normalizeRelease({ status: 'published', downloadUrl: '/unsafe.exe' })
 
     expect(release.status).toBe('pending')
+    expect(release.size).toBeNull()
+    expect(release.publishedAt).toBeNull()
+    expect(release.downloadUrl).toBeNull()
+    expect(release.notes).toEqual({ zh: [], en: [] })
+  })
+
+  it.each([
+    'javascript:alert(1)',
+    'data:text/plain,unsafe',
+    'https://example.com/download.exe',
+    '//example.com/download.exe',
+    '/downloads/file.exe ',
+    '/downloads/file.exe\n',
+  ])('falls back safely for a published release with unsafe download URL %s', (downloadUrl) => {
+    const release = normalizeRelease({
+      version: '0.1.0',
+      platform: 'windows-x64',
+      filename: 'MeristemForge-Setup-0.1.0.exe',
+      status: 'published',
+      size: '120 MB',
+      publishedAt: '2026-10-14',
+      downloadUrl,
+      notes: {
+        zh: ['首个公开版本'],
+        en: ['First public release'],
+      },
+    })
+
+    expect(release.status).toBe('pending')
+    expect(release.size).toBeNull()
+    expect(release.publishedAt).toBeNull()
     expect(release.downloadUrl).toBeNull()
     expect(release.notes).toEqual({ zh: [], en: [] })
   })

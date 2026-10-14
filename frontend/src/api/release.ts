@@ -38,6 +38,15 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
 
+function isSafeDownloadUrl(value: unknown): value is string {
+  return (
+    isNonEmptyString(value) &&
+    value.startsWith('/downloads/') &&
+    value.length > '/downloads/'.length &&
+    !/[\s\u0000-\u001F\u007F-\u009F]/u.test(value)
+  )
+}
+
 function isLocalizedNotes(value: unknown): value is Record<ReleaseLocale, string[]> {
   if (!isRecord(value) || !Array.isArray(value.zh) || !Array.isArray(value.en)) {
     return false
@@ -76,7 +85,7 @@ export function normalizeRelease(value: unknown): ReleaseInfo {
     }
   }
 
-  if (!isNonEmptyString(size) || !isNonEmptyString(publishedAt) || !isNonEmptyString(downloadUrl)) {
+  if (!isNonEmptyString(size) || !isNonEmptyString(publishedAt) || !isSafeDownloadUrl(downloadUrl)) {
     return fallbackRelease()
   }
 
