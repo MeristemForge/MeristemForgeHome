@@ -40,6 +40,10 @@ export interface MessageSchema {
     download: string
     checking: string
     unavailable: string
+    status: {
+      pending: string
+      published: string
+    }
     version: string
     note1: string
     note2: string

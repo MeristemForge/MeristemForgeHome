@@ -40,6 +40,7 @@ const zh = {
     download: '下载 Windows 版',
     checking: '检查最新版本...',
     unavailable: '暂时无法下载',
+    status: { pending: '暂未发布', published: '已发布' },
     version: '版本',
     note1: '支持视频、图片、音乐和声音创作',
     note2: '本地运行，数据由用户掌控',
