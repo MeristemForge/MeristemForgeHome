@@ -9,8 +9,7 @@ export default {
   hero: {
     eyebrow: '一体化 AI 创作工作台',
     title: '让每一种灵感，都有创作的形状',
-    subtitle:
-      '在一个本地工作台里完成视频、图片、音乐与声音创作。统一管理模型、素材和项目，让复杂工作流变得简单自然。',
+    subtitle: '在一个本地工作台里完成视频、图片、音乐与声音创作。统一管理模型、素材和项目，让复杂工作流变得简单自然。',
     explore: '查看创作能力',
     mascotAlt: 'MeristemForge 白色小鸭子吉祥物',
   },
@@ -39,12 +38,10 @@ export default {
     download: '下载 Windows 版',
     checking: '检查最新版本...',
     unavailable: '暂时无法下载',
+    version: '版本',
     note1: '支持视频、图片、音乐和声音创作',
     note2: '本地运行，数据由用户掌控',
     note3: '持续优化创作体验',
   },
-  footer: {
-    tagline: '创造，不止一种形状。',
-    copyright: '© 2026 MeristemForge.',
-  },
+  footer: { tagline: '创造，不止一种形状。', copyright: '© 2026 MeristemForge.' },
 }
