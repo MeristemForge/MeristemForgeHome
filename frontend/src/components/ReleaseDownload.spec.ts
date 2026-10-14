@@ -55,6 +55,23 @@ describe('ReleaseDownload', () => {
     expect(control.text()).toBe('暂未发布')
   })
 
+  it('does not expose an anchor when a published release has an unsafe URL', () => {
+    const release: ReleaseInfo = {
+      ...pendingRelease,
+      status: 'published',
+      size: '120 MB',
+      publishedAt: '2026-10-14',
+      downloadUrl: 'javascript:alert(1)',
+    }
+    const wrapper = renderDownload(release)
+    const control = wrapper.get('[data-testid="hero-download"]')
+
+    expect(wrapper.find('a').exists()).toBe(false)
+    expect(control.element.tagName).toBe('BUTTON')
+    expect(control.attributes('disabled')).toBeDefined()
+    expect(control.text()).toBe('暂未发布')
+  })
+
   it('renders a published release as a downloadable anchor', () => {
     const release: ReleaseInfo = {
       ...pendingRelease,

@@ -60,7 +60,14 @@ describe('normalizeRelease', () => {
     'data:text/plain,unsafe',
     'https://example.com/download.exe',
     '//example.com/download.exe',
+    '/downloads/../evil.exe',
+    '/downloads/%2e%2e/evil.exe',
+    '/downloads/%2e/ok.exe',
+    '/downloads/file.exe\\evil',
     '/downloads/file.exe ',
+    '/downloads/file.exe\t',
+    '/downloads/file.exe\0',
+    '/downloads/file.exe\u2028',
     '/downloads/file.exe\n',
   ])('falls back safely for a published release with unsafe download URL %s', (downloadUrl) => {
     const release = normalizeRelease({

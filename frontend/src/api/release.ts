@@ -38,13 +38,54 @@ function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0
 }
 
-function isSafeDownloadUrl(value: unknown): value is string {
-  return (
-    isNonEmptyString(value) &&
-    value.startsWith('/downloads/') &&
-    value.length > '/downloads/'.length &&
-    !/[\s\u0000-\u001F\u007F-\u009F]/u.test(value)
-  )
+const INVALID_DOWNLOAD_URL_CHARS = /[\s\u0000-\u001F\u007F-\u009F]/u
+const DOWNLOAD_URL_ORIGIN = 'https://meristemforge.invalid'
+
+export function isSafeDownloadUrl(value: unknown): value is string {
+  if (
+    !isNonEmptyString(value) ||
+    !value.startsWith('/downloads/') ||
+    value.length <= '/downloads/'.length ||
+    value.includes('\\') ||
+    INVALID_DOWNLOAD_URL_CHARS.test(value)
+  ) {
+    return false
+  }
+
+  let parsedUrl: URL
+  try {
+    parsedUrl = new URL(value, DOWNLOAD_URL_ORIGIN)
+  } catch {
+    return false
+  }
+
+  if (parsedUrl.origin !== DOWNLOAD_URL_ORIGIN || !parsedUrl.pathname.startsWith('/downloads/')) {
+    return false
+  }
+
+  const rawPathname = value.split(/[?#]/, 1)[0]
+  let decodedPathname = rawPathname
+  try {
+    for (let decodePass = 0; decodePass < 4; decodePass += 1) {
+      const nextPathname = decodeURIComponent(decodedPathname)
+      if (nextPathname === decodedPathname) {
+        break
+      }
+      decodedPathname = nextPathname
+    }
+  } catch {
+    return false
+  }
+
+  if (
+    !decodedPathname.startsWith('/downloads/') ||
+    decodedPathname.includes('\\') ||
+    INVALID_DOWNLOAD_URL_CHARS.test(decodedPathname)
+  ) {
+    return false
+  }
+
+  return !decodedPathname.split('/').some((segment) => segment === '.' || segment === '..')
 }
 
 function isLocalizedNotes(value: unknown): value is Record<ReleaseLocale, string[]> {

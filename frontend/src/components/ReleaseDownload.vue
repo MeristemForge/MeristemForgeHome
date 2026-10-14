@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { ReleaseInfo } from '@/api/release'
+import { isSafeDownloadUrl, type ReleaseInfo } from '@/api/release'
 
 const props = defineProps<{
   release: ReleaseInfo | null
@@ -8,7 +8,10 @@ const props = defineProps<{
 }>()
 
 const canDownload = computed(
-  () => !props.loading && props.release?.status === 'published' && !!props.release?.downloadUrl,
+  () =>
+    !props.loading &&
+    props.release?.status === 'published' &&
+    isSafeDownloadUrl(props.release?.downloadUrl),
 )
 </script>
 
