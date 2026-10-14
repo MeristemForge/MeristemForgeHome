@@ -10,26 +10,43 @@ describe('message schema', () => {
   })
 })
 
-const expectedKeys = {
-  nav: ['capabilities', 'workflow', 'about', 'language'],
-  hero: ['eyebrow', 'title', 'subtitle', 'explore', 'mascotAlt'],
-  capabilities: ['eyebrow', 'title', 'subtitle', 'items'],
-  workflow: ['eyebrow', 'title', 'description', 'benefits'],
-  release: ['eyebrow', 'title', 'description', 'button'],
-  footer: ['tagline', 'copyright'],
+function messageShape(value: unknown): unknown {
+  if (typeof value === 'string') return 'string'
+  if (Array.isArray(value)) return value.map(messageShape)
+  if (value === null || typeof value !== 'object') return typeof value
+
+  return Object.fromEntries(
+    Object.keys(value)
+      .sort((a, b) => a.localeCompare(b))
+      .map((key) => [key, messageShape(value[key as keyof typeof value])]),
+  )
 }
+
+function emptyMessagePaths(value: unknown, path = ''): string[] {
+  if (typeof value === 'string') return value.trim() ? [] : [path]
+  if (Array.isArray(value)) {
+    if (value.length === 0) return [path]
+    return value.flatMap((item, index) => emptyMessagePaths(item, `${path}[${index}]`))
+  }
+  if (value === null || typeof value !== 'object') return [path]
+
+  return Object.entries(value).flatMap(([key, item]) =>
+    emptyMessagePaths(item, path ? `${path}.${key}` : key),
+  )
+}
+
+describe('locale parity', () => {
+  it('has matching recursive message shapes', () => {
+    expect(messageShape(en)).toEqual(messageShape(zh))
+  })
+})
 
 describe.each([
   ['Chinese', zh],
   ['English', en],
 ])('%s product website messages', (_, messages) => {
-  it('defines the complete section contract', () => {
-    expect(Object.keys(messages)).toEqual(Object.keys(expectedKeys))
-    for (const [section, keys] of Object.entries(expectedKeys)) {
-      expect(Object.keys(messages[section as keyof typeof messages])).toEqual(
-        section === 'nav' ? [...keys, 'ariaLabel'] : keys,
-      )
-    }
+  it('contains no empty messages', () => {
+    expect(emptyMessagePaths(messages)).toEqual([])
   })
 
   it('lists video, image, music, and voice capabilities in order', () => {
