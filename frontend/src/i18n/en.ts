@@ -1,11 +1,5 @@
 export default {
-  nav: {
-    capabilities: 'Creative Capabilities',
-    workflow: 'How It Works',
-    about: 'About',
-    language: 'Switch to Chinese',
-    ariaLabel: 'Primary navigation',
-  },
+  nav: { capabilities: 'Creative Capabilities', workflow: 'How It Works', about: 'About', language: 'Switch to Chinese', ariaLabel: 'Primary navigation' },
   hero: {
     eyebrow: 'An All-in-One AI Creative Workspace',
     title: 'Give Every Idea a Shape of Its Own',
@@ -38,12 +32,10 @@ export default {
     download: 'Download Windows',
     checking: 'Checking latest version...',
     unavailable: 'Download unavailable',
+    version: 'Version',
     note1: 'Create video, images, music, and voice',
     note2: 'Run locally with your files under your control',
     note3: 'Continuous improvements for creators',
   },
-  footer: {
-    tagline: 'Creativity Has More Than One Shape.',
-    copyright: '© 2026 MeristemForge.',
-  },
+  footer: { tagline: 'Creativity Has More Than One Shape.', copyright: '© 2026 MeristemForge.' },
 }
