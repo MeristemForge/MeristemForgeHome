@@ -19,10 +19,10 @@ onMounted(async () => {
 <template>
   <div class="download-status-wrapper" :class="{ 'download-status-wrapper--compact': props.compact }">
     <a
-      v-if="release && release.downloadUrl !== '#'
+      v-if="release?.status === 'published' && !!release.downloadUrl
       "
       class="download-status"
-      :href="release.downloadUrl"
+      :href="release.downloadUrl ?? undefined"
       :download="release.filename"
       :data-testid="props.testId"
     >
