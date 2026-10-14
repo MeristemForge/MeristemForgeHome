@@ -3,7 +3,6 @@ import { createI18n } from 'vue-i18n'
 import { describe, expect, it } from 'vitest'
 import en from '@/i18n/en'
 import zh from '@/i18n/zh'
-import DownloadStatus from './DownloadStatus.vue'
 import Navbar from './Navbar.vue'
 
 function renderNavbar(initialLocale: 'zh' | 'en' = 'zh') {
@@ -22,10 +21,9 @@ describe('Navbar', () => {
     expect(wrapper.get('a[href="#top"]').text()).toBe('MeristemForge')
   })
 
-  it('keeps the compact release download entry', () => {
+  it('does not render a release download entry', () => {
     const { wrapper } = renderNavbar()
-    const download = wrapper.get('[data-testid="nav-download"]')
-    expect(download.classes()).toContain('download-status')
+    expect(wrapper.find('.download-status').exists()).toBe(false)
   })
 
   it('switches languages', async () => {
@@ -34,11 +32,5 @@ describe('Navbar', () => {
     expect(i18n.global.locale.value).toBe('en')
     expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem('locale')).toBe('en')
-  })
-
-  it('renders reusable release status', () => {
-    const i18n = createI18n({ legacy: false, locale: 'en', messages: { zh, en } })
-    const wrapper = mount(DownloadStatus, { global: { plugins: [i18n] } })
-    expect(wrapper.get('.download-status')).toBeTruthy()
   })
 })

@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { fetchLatestRelease, type ReleaseInfo } from '@/api/release'
-import DownloadStatus from './DownloadStatus.vue'
+import type { ReleaseInfo } from '@/api/release'
 
-const { t } = useI18n()
-const release = ref<ReleaseInfo | null>(null)
+const props = defineProps<{ release: ReleaseInfo | null }>()
+const { locale, t } = useI18n()
 
-onMounted(async () => {
-  release.value = await fetchLatestRelease()
+const localizedNotes = computed(() => {
+  const fallback = [t('release.note1'), t('release.note2'), t('release.note3')]
+  if (!props.release) return fallback
+
+  const key = locale.value === 'en' ? 'en' : 'zh'
+  return props.release.notes[key].length ? props.release.notes[key] : fallback
 })
+
+const statusLabel = computed(() => t(`release.status.${props.release?.status ?? 'pending'}`))
 </script>
 
 <template>
@@ -22,20 +27,14 @@ onMounted(async () => {
       <div v-if="release" class="release-meta">
         <span>{{ t('release.version') }} {{ release.version }}</span>
         <span>{{ release.platform }}</span>
-        <span>{{ release.size }}</span>
-        <span>{{ release.publishedAt }}</span>
+        <span>{{ statusLabel }}</span>
+        <span v-if="release.size">{{ release.size }}</span>
+        <span v-if="release.publishedAt">{{ release.publishedAt }}</span>
       </div>
 
       <ul class="release-notes">
-        <li v-for="note in release?.notes ?? []" :key="note">{{ note }}</li>
-        <template v-if="!release">
-          <li>{{ t('release.note1') }}</li>
-          <li>{{ t('release.note2') }}</li>
-          <li>{{ t('release.note3') }}</li>
-        </template>
+        <li v-for="note in localizedNotes" :key="note">{{ note }}</li>
       </ul>
-
-      <DownloadStatus test-id="release-download" />
     </div>
   </section>
 </template>

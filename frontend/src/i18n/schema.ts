@@ -39,7 +39,6 @@ export interface MessageSchema {
     button: string
     download: string
     checking: string
-    unavailable: string
     status: {
       pending: string
       published: string

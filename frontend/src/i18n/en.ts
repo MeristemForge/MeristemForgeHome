@@ -33,7 +33,6 @@ const en = {
     button: 'Download Windows Version',
     download: 'Download Windows',
     checking: 'Checking latest version...',
-    unavailable: 'Download unavailable',
     status: { pending: 'Coming Soon', published: 'Published' },
     version: 'Version',
     note1: 'Create video, images, music, and voice',

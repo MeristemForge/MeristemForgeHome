@@ -79,6 +79,10 @@ describe.each([
     expect(messages.workflow.benefits).toHaveLength(4)
     expect(messages.workflow.benefits.every((benefit) => benefit.trim())).toBe(true)
   })
+
+  it('does not keep the obsolete unavailable release message', () => {
+    expect('unavailable' in messages.release).toBe(false)
+  })
 })
 
 describe('initial locale', () => {

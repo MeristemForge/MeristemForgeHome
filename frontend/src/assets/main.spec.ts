@@ -15,6 +15,11 @@ function declarations(selector: string, from = 0) {
 const panelProperties = /(?:^|;)\s*(?:background|border|border-radius|box-shadow|backdrop-filter)\s*:/
 
 describe('transparent first-screen layout', () => {
+  it('does not keep download rules for sections without download controls', () => {
+    expect(css).not.toContain('.release__panel .download-status')
+    expect(css).not.toContain('.nav-actions .download-status')
+  })
+
   it('shows the top navigation only at the start of the page', () => {
     expect(declarations('.navbar')).toMatch(/position:\s*relative/)
     expect(declarations('.navbar__inner')).not.toMatch(panelProperties)

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import DownloadStatus from './DownloadStatus.vue'
+import type { ReleaseInfo } from '@/api/release'
+import ReleaseDownload from './ReleaseDownload.vue'
 
+defineProps<{ release: ReleaseInfo | null; loading: boolean }>()
 const { t } = useI18n()
 </script>
 
@@ -12,7 +14,7 @@ const { t } = useI18n()
       <h1>{{ t('hero.title') }}</h1>
       <p class="hero__description">{{ t('hero.subtitle') }}</p>
       <div class="hero__actions">
-        <DownloadStatus test-id="hero-download" />
+        <ReleaseDownload :release="release" :loading="loading" />
         <a class="secondary-action" href="#capabilities">{{ t('hero.explore') }}</a>
       </div>
     </div>
