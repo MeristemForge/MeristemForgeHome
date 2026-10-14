@@ -11,6 +11,11 @@ const { t } = useI18n()
       <p class="eyebrow">{{ t('release.eyebrow') }}</p>
       <h2>{{ t('release.title') }}</h2>
       <p>{{ t('release.description') }}</p>
+      <ul class="release-notes">
+        <li>{{ t('release.note1') }}</li>
+        <li>{{ t('release.note2') }}</li>
+        <li>{{ t('release.note3') }}</li>
+      </ul>
       <DownloadStatus test-id="release-download" />
     </div>
   </section>
