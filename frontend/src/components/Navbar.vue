@@ -7,7 +7,6 @@ function toggleLocale() {
   const next = locale.value === 'zh' ? 'en' : 'zh'
   locale.value = next
   localStorage.setItem('locale', next)
-  document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en'
 }
 </script>
 

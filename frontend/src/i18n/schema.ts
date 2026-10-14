@@ -6,6 +6,9 @@ export interface CapabilityMessage {
 }
 
 export interface MessageSchema {
+  meta: {
+    title: string
+  }
   nav: {
     capabilities: string
     workflow: string
@@ -36,7 +39,6 @@ export interface MessageSchema {
     eyebrow: string
     title: string
     description: string
-    button: string
     download: string
     checking: string
     status: {

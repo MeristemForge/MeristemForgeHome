@@ -30,7 +30,6 @@ describe('Navbar', () => {
     const { wrapper, i18n } = renderNavbar()
     await wrapper.get('[data-testid="language-switch"]').trigger('click')
     expect(i18n.global.locale.value).toBe('en')
-    expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem('locale')).toBe('en')
   })
 })

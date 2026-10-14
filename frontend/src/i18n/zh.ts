@@ -1,6 +1,7 @@
 import type { MessageSchema } from './schema'
 
 const zh = {
+  meta: { title: 'MeristemForge · 一体化 AI 创作工作台' },
   nav: {
     capabilities: '创作能力',
     workflow: '工作方式',
@@ -36,7 +37,6 @@ const zh = {
     eyebrow: 'MeristemForge Windows 版',
     title: '下载最新版本，开始你的创作旅程',
     description: 'Windows 版安装程序已准备好。',
-    button: '下载 Windows 版',
     download: '下载 Windows 版',
     checking: '检查最新版本...',
     status: { pending: '暂未发布', published: '已发布' },
