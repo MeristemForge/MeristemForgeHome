@@ -29,11 +29,18 @@ function emptyMessagePaths(value: unknown, path = ''): string[] {
     return value.flatMap((item, index) => emptyMessagePaths(item, `${path}[${index}]`))
   }
   if (value === null || typeof value !== 'object') return [path]
+  if (Object.keys(value).length === 0) return [path]
 
   return Object.entries(value).flatMap(([key, item]) =>
     emptyMessagePaths(item, path ? `${path}.${key}` : key),
   )
 }
+
+describe('empty message paths', () => {
+  it('reports empty objects at their current path', () => {
+    expect(emptyMessagePaths({ section: {} })).toEqual(['section'])
+  })
+})
 
 describe('locale parity', () => {
   it('has matching recursive message shapes', () => {
