@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import DownloadStatus from './DownloadStatus.vue'
 
 const { locale, t } = useI18n()
 
@@ -8,7 +7,6 @@ function toggleLocale() {
   const next = locale.value === 'zh' ? 'en' : 'zh'
   locale.value = next
   localStorage.setItem('locale', next)
-  document.documentElement.lang = next === 'zh' ? 'zh-CN' : 'en'
 }
 </script>
 
@@ -33,7 +31,6 @@ function toggleLocale() {
         >
           {{ locale === 'zh' ? 'EN' : '中文' }}
         </button>
-        <DownloadStatus test-id="nav-download" compact />
       </div>
     </div>
   </nav>

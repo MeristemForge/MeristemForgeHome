@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { describe, expect, expectTypeOf, it, vi } from 'vitest'
 import type { MessageSchema } from './schema'
 import en from './en'
@@ -74,28 +75,46 @@ describe.each([
     expect(messages.nav.capabilities.trim()).not.toBe('')
     expect(messages.hero.title.trim()).not.toBe('')
     expect(messages.workflow.title.trim()).not.toBe('')
-    expect(messages.release.button.trim()).not.toBe('')
     expect(messages.footer.tagline.trim()).not.toBe('')
     expect(messages.workflow.benefits).toHaveLength(4)
     expect(messages.workflow.benefits.every((benefit) => benefit.trim())).toBe(true)
+  })
+
+  it('does not keep obsolete release messages', () => {
+    expect('button' in messages.release).toBe(false)
+    expect('unavailable' in messages.release).toBe(false)
   })
 })
 
 describe('initial locale', () => {
   it.each([
-    ['en', 'en', 'en'],
-    ['zh', 'zh', 'zh-CN'],
-    ['unknown', 'zh', 'zh-CN'],
-    [null, 'zh', 'zh-CN'],
-  ])('uses saved locale %s as %s', async (saved, expected, lang) => {
+    ['en', 'en', 'en', 'MeristemForge · All-in-One AI Creative Workspace'],
+    ['zh', 'zh', 'zh-CN', 'MeristemForge · 一体化 AI 创作工作台'],
+    ['unknown', 'zh', 'zh-CN', 'MeristemForge · 一体化 AI 创作工作台'],
+    [null, 'zh', 'zh-CN', 'MeristemForge · 一体化 AI 创作工作台'],
+  ])('uses saved locale %s as %s', async (saved, expected, lang, title) => {
     vi.resetModules()
     document.documentElement.lang = ''
+    document.title = ''
     if (saved) localStorage.setItem('locale', saved)
 
     const { default: i18n } = await import('./index')
 
     expect(i18n.global.locale.value).toBe(expected)
     expect(document.documentElement.lang).toBe(lang)
+    expect(document.title).toBe(title)
     expect(i18n.global.fallbackLocale.value).toBe('zh')
+  })
+
+  it('synchronizes document metadata when the locale changes', async () => {
+    vi.resetModules()
+    localStorage.setItem('locale', 'zh')
+
+    const { default: i18n } = await import('./index')
+    i18n.global.locale.value = 'en'
+    await nextTick()
+
+    expect(document.documentElement.lang).toBe('en')
+    expect(document.title).toBe('MeristemForge · All-in-One AI Creative Workspace')
   })
 })

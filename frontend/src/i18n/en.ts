@@ -1,6 +1,7 @@
 import type { MessageSchema } from './schema'
 
 const en = {
+  meta: { title: 'MeristemForge · All-in-One AI Creative Workspace' },
   nav: { capabilities: 'Creative Capabilities', workflow: 'How It Works', about: 'About', language: 'Switch to Chinese', ariaLabel: 'Primary navigation' },
   hero: {
     eyebrow: 'An All-in-One AI Creative Workspace',
@@ -30,10 +31,9 @@ const en = {
     eyebrow: 'MeristemForge for Windows',
     title: 'Download the Latest Version',
     description: 'The Windows installer is ready.',
-    button: 'Download Windows Version',
     download: 'Download Windows',
     checking: 'Checking latest version...',
-    unavailable: 'Download unavailable',
+    status: { pending: 'Coming Soon', published: 'Published' },
     version: 'Version',
     note1: 'Create video, images, music, and voice',
     note2: 'Run locally with your files under your control',
