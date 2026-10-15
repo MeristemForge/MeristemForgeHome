@@ -28,11 +28,14 @@ describe('Home', () => {
   it('renders four creative modules', () => {
     const wrapper = renderHome()
     expect(wrapper.findAll('[data-testid="capability-card"]')).toHaveLength(4)
+    expect(wrapper.findAll('.capability-card__icon')).toHaveLength(4)
+    expect(wrapper.get('.capability-scroll-hint').text()).toContain('横向滚动')
   })
 
   it('keeps workflow and release sections', () => {
     const wrapper = renderHome()
-    expect(wrapper.get('#workflow').text()).toContain('复杂能力，简单地放在一起')
+    expect(wrapper.get('#workflow').text()).toContain('四个工作台分别管理自己的本地项目')
+    expect(wrapper.get('#workflow').text()).toContain('新建项目 → 查看教程')
     expect(wrapper.get('#release')).toBeTruthy()
   })
 

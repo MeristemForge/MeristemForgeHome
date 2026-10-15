@@ -9,10 +9,6 @@ const benefits = computed(() => tm('workflow.benefits') as string[])
 <template>
   <section id="workflow" class="workflow section-shell">
     <div class="workflow__panel glass-panel">
-      <div class="workflow__preview" aria-hidden="true">
-        <span class="preview-line"></span>
-        <div class="preview-columns"><i></i><i></i><i></i></div>
-      </div>
       <div class="workflow__copy">
         <p class="eyebrow">{{ t('workflow.eyebrow') }}</p>
         <h2>{{ t('workflow.title') }}</h2>
@@ -23,6 +19,17 @@ const benefits = computed(() => tm('workflow.benefits') as string[])
           </li>
         </ul>
       </div>
+    </div>
+    <div class="preparation">
+      <h3>{{ t('workflow.preparation') }}</h3>
+      <ol class="preparation__steps">
+        <li v-for="index in [0, 1, 2]" :key="index">
+          <span class="preparation__number" aria-hidden="true">0{{ index + 1 }}</span>
+          <h4>{{ t(`workflow.steps.${index}.title`) }}</h4>
+          <p>{{ t(`workflow.steps.${index}.detail`) }}</p>
+          <span class="preparation__action">{{ t(`workflow.steps.${index}.action`) }}</span>
+        </li>
+      </ol>
     </div>
   </section>
 </template>

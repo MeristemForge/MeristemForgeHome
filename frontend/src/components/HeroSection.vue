@@ -15,8 +15,9 @@ const { t } = useI18n()
       <p class="hero__description">{{ t('hero.subtitle') }}</p>
       <div class="hero__actions">
         <ReleaseDownload :release="release" :loading="loading" />
-        <a class="secondary-action" href="#capabilities">{{ t('hero.explore') }}</a>
+        <a class="secondary-action" href="#guide">{{ t('hero.explore') }}</a>
       </div>
+      <p class="hero__availability">{{ t('hero.availability') }}</p>
     </div>
     <div class="duck-stage">
       <span class="duck-glow" aria-hidden="true"></span>

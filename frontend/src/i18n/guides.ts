@@ -1,0 +1,150 @@
+import type { GuideMessages } from './schema'
+
+export const guideZh: GuideMessages = {
+  eyebrow: '从第一次操作开始',
+  title: '选一种创作，跟着步骤试一遍',
+  subtitle: '先创建对应的本地项目，再按步骤添加输入、生成内容并预览结果。视频还包含姿态与深度控制、时间引导、人脸修复、片段续接和局部重绘。',
+  tabsLabel: '选择要学习的创作模块',
+  diagram: '操作流程示意 · 点击编号查看详细步骤',
+  stepLabel: '步骤',
+  previous: '上一步',
+  next: '下一步',
+  tipLabel: '再进一步',
+  learn: '查看图文教程',
+  videoTechniques: {
+    title: '视频进阶：控制动作、接续与修复',
+    subtitle: '这些操作都在视频项目的片段和预览区完成。需要先有对应的素材或已生成的视频。',
+    entryLabel: '操作入口',
+    items: {
+      pose: { title: '姿态控制', summary: '从一段控制视频提取人物动作，让生成镜头沿用动作参考。', entry: '视频片段 → 引导控制 → 控制视频', steps: ['选“姿态”，上传包含目标动作的控制视频。', '点击“提取姿态”，等待预览生成；确认动作轨迹符合预期。', '保留姿态控制源，填写镜头提示词，再点击“生成视频”。'] },
+      depth: { title: '深度控制', summary: '从控制视频提取空间纵深和前后层次，辅助保持画面结构。', entry: '视频片段 → 引导控制 → 控制视频', steps: ['选“深度”，上传包含目标空间变化的控制视频。', '点击“提取深度”，查看控制预览是否保留场景层次。', '填写生成提示词并点击“生成视频”，将控制视频作为结构引导。'] },
+      time: { title: '时间引导', summary: '把图片、视频或音频放到片段的指定时刻，约束画面或声音变化。', entry: '选择“全能参考” → 引导控制 → 时间引导', steps: ['把生成方式切换为“全能参考”，打开“引导控制”并选择“时间引导”。', '点击“添加时间引导”，选择图片、视频或音频，并设置它对应的时间（秒）。', '按需要添加多个时间点，确认顺序与片段时长相符，然后生成并预览。'] },
+      face: { title: '人脸修复', summary: '跟踪视频中的一张脸，对其进行逐帧修复，并可补充清晰面部参考图。', entry: '生成视频 → 暂停在能清楚看见人脸的画面 → 人脸修复', steps: ['先生成视频，并把播放器暂停在目标人脸清楚可见的画面。', '点击预览下方的“人脸修复”，再点击画面里需要修复的人脸框；可选一张清晰面部参考图。', '点击“修复选中人脸”，处理完成后选择“完成”；需要时可继续选择其他人脸。'] },
+      continuation: { title: '视频续接', summary: '提取当前视频的末尾画面与音频，创建一个沿用该结尾的新片段。', entry: '生成视频 → 预览下方的“视频续接”', steps: ['先生成并确认要接续的视频版本。', '点击“视频续接”，选择生成的续接帧数，再点击“创建片段”。', '新片段会加入当前视频项目；补写后续内容的提示词，然后生成新镜头。'] },
+      repair: { title: '局部重绘', summary: '在选定时间段内，只重新生成涂抹的区域；也可以重绘完整画面。', entry: '生成视频 → 预览下方的“局部重绘”', steps: ['先生成视频，在预览下方点击“局部重绘”。', '拖动时间轴两端选重绘区间，在画面上涂抹目标区域；切换“完整重绘”则覆盖整幅画面。', '需要时可用画笔、橡皮或清空调整蒙版，确认后点击“开始重绘”。'] },
+    },
+  },
+  items: {
+    video: {
+      title: '让第一个镜头动起来',
+      intro: '先从文生视频开始，再尝试图片关键帧或参考素材。',
+      modes: '文生视频 / 图生视频 / 全能参考',
+      steps: [
+        { title: '创建项目与片段', detail: '从软件首页进入“视频创作”，点击“新建项目”并选择本地保存目录。项目就绪后点击“添加片段”，选择要编辑的片段。', action: '新建项目 → 添加片段' },
+        { title: '选择生成方式', detail: '在右侧选择“文生视频”，无需上传图片。想让已有图片动起来，可切换“图生视频”，选择首帧、尾帧或首尾帧并添加对应图片；多种参考素材使用“全能参考”。', action: '第一次先选：文生视频' },
+        { title: '编写镜头提示词', detail: '在片段提示词中写清主体、动作、场景和镜头运动。一个片段描述一个镜头，想讲不同情节时可再添加后续片段。', action: '示例：小鸭子走过草地，镜头缓慢跟随' },
+        { title: '生成、预览与下载', detail: '点击“生成视频”，等待任务结束后在预览区播放结果。确认效果后下载当前视频；已有生成结果还可以继续尝试续接片段或人脸修复。', action: '生成视频 → 播放预览 → 下载' },
+      ],
+      tip: '首帧、尾帧和首尾帧在“图生视频”中使用。多时间点素材用“时间引导”，视频姿态或深度轨迹用“控制视频”。',
+    },
+    image: {
+      title: '从一句描述到第一张图片',
+      intro: '文本生图和图片编辑是两条不同的操作路径。',
+      modes: '文本生图 / 图片编辑',
+      steps: [
+        { title: '创建图片项目', detail: '进入“图片创作”，点击“新建图片项目”，选择保存目录。点击“创建图片”，或在左侧“图片”节点创建一张图片条目。', action: '新建图片项目 → 创建图片' },
+        { title: '选择模式与输入', detail: '新图选择“文本生图”。修改已有图片时选择“图片编辑”，添加原始图；需要额外视觉信息时再添加参考图。原始图与参考图在当前图片项目中管理。', action: '文本生图，或图片编辑 + 原始图' },
+        { title: '描述画面或修改', detail: '文本生图时描述主体、环境、构图和风格。图片编辑时写清楚要修改的部分、保留的部分和目标效果；输入 @ 可以引用原始图和参考图。', action: '示例：把原始图中的天空改成日落，保留主体' },
+        { title: '生成并查看结果', detail: '点击“生成图片”，完成后在中央预览区查看。根据结果修改提示词再次生成，满意后下载当前图片。', action: '生成图片 → 查看预览 → 下载' },
+      ],
+      tip: '图片编辑必须先添加原始图。需要在其他创作模块使用这张图时，先保存文件，再到目标模块手动导入。',
+    },
+    music: {
+      title: '写一首歌，或做一段纯音乐',
+      intro: '音乐描述决定风格；歌曲模式还需要你填写歌词。',
+      modes: '歌曲 / 纯音乐',
+      steps: [
+        { title: '创建项目与歌曲', detail: '进入“音乐创作”，点击“新建音乐项目”并选择保存位置，然后点击“添加歌曲”创建歌曲条目。', action: '新建音乐项目 → 添加歌曲' },
+        { title: '选歌曲或纯音乐', detail: '右侧选择“歌曲”或“纯音乐”。歌曲模式需要填写歌词；纯音乐不需要歌词。选择已有音乐风格，或切换“自定义”填写音乐描述。', action: '歌曲：歌词 + 描述；纯音乐：描述' },
+        { title: '描述音乐、填写歌词', detail: '音乐描述可以写曲风、情绪、人声、节奏、乐器和编曲。歌曲歌词可用 [Verse]、[Chorus] 等段落标签组织；纯音乐不需要歌词。', action: '示例：温暖的原声吉他，轻柔节奏，纯音乐' },
+        { title: '生成、试听与下载', detail: '点击“生成歌曲”或“生成纯音乐”。完成后在预览区试听，确认后下载当前音乐；常用描述可以在当前项目中保存为音乐风格。', action: '生成歌曲 / 生成纯音乐 → 试听 → 下载' },
+      ],
+      tip: '歌曲模式需要自己提供歌词和音乐描述；纯音乐只需描述音乐。',
+    },
+    voice: {
+      title: '准备人物音色，再让文字开口',
+      intro: '支持文转语音，也可以把已有音频转换成目标音色。',
+      modes: '文转语音 / 音色转换',
+      steps: [
+        { title: '创建项目与音色', detail: '进入“声音创作”，点击“新建声音项目”。在“人物音色”中选择“导入音色”，填写名称，准备与界面标准参考文本对应的录音并选择参考片段。', action: '新建声音项目 → 人物音色 → 导入音色' },
+        { title: '添加声音与模式', detail: '点击“添加声音”。右侧选择“文转语音”并选择人物音色；如果已有录音需要换音色，选择“音色转换”，添加源音频并选择目标音色。', action: '文转语音，或音色转换 + 源音频' },
+        { title: '输入文本或准备源音频', detail: '文转语音时输入需要朗读的文字；音色转换时导入要转换的源音频，并确认已经选好目标人物音色。', action: '示例：欢迎来到 MeristemForge，开始今天的创作吧。' },
+        { title: '生成并试听声音', detail: '点击“生成语音”或“音色转换”，等待完成后在预览区试听，满意后下载当前声音文件。', action: '生成语音 / 音色转换 → 试听 → 下载' },
+      ],
+      tip: '导入音色的参考片段应完整包含界面提供的标准参考文本，并控制在 30 秒以内。语言设置控制发音，不会翻译输入文字。',
+    },
+  },
+}
+
+export const guideEn: GuideMessages = {
+  eyebrow: 'Start with your first creation',
+  title: 'Pick a studio. Follow the steps.',
+  subtitle: 'Create a local project, add your inputs, generate, and review the result. Video also has pose and depth control, time guides, face refinement, clip continuation and local repair.',
+  tabsLabel: 'Choose a studio to learn',
+  diagram: 'Workflow illustration · Select a number for instructions',
+  stepLabel: 'Step', previous: 'Previous', next: 'Next', tipLabel: 'Go a little further',
+  learn: 'Read the illustrated guide',
+  videoTechniques: {
+    title: 'More for video: control, continue and repair',
+    subtitle: 'These workflows live in video clips and the preview. Start with the relevant input or a generated video.',
+    entryLabel: 'Where to find it',
+    items: {
+      pose: { title: 'Pose control', summary: 'Extract movement from a control video to guide motion in the generated shot.', entry: 'Video clip → Guidance → Control video', steps: ['Choose Pose and add a control video containing the motion to follow.', 'Choose Extract pose and wait for the preview. Check that it captures the motion you want.', 'Keep the pose source attached, describe the shot, and choose Generate video.'] },
+      depth: { title: 'Depth control', summary: 'Extract spatial depth from a control video to guide foreground and background structure.', entry: 'Video clip → Guidance → Control video', steps: ['Choose Depth and add a control video with the spatial structure to follow.', 'Choose Extract depth and check the preview for the scene layers.', 'Add your generation prompt and choose Generate video to use the control video as a structural guide.'] },
+      time: { title: 'Time guides', summary: 'Place images, videos or audio at specific times to guide visual and audio changes.', entry: 'Choose Omni-reference → Guidance → Time guides', steps: ['Choose Omni-reference, open Guidance and select Time guides.', 'Choose Add time guide, select an image, video or audio file, and enter its time in seconds.', 'Add guides at other timestamps as needed. Check their order and clip duration before generating.'] },
+      face: { title: 'Face refinement', summary: 'Track and refine a selected face across a video; an optional clear reference image can also help.', entry: 'Generate video → Pause on a clear face → Face refinement', steps: ['Generate a video, then pause where the target face is clearly visible.', 'Choose Face refinement below the preview and click the target face box. You can add a clear face reference image.', 'Choose Refine selected face. When it finishes, choose Done or continue with another face.'] },
+      continuation: { title: 'Clip continuation', summary: 'Use the current video’s last frame and audio to start a new, connected clip.', entry: 'Generate video → Clip continuation below the preview', steps: ['Generate and select the video version you want to continue.', 'Choose Clip continuation, select the number of continuation frames and choose Create clip.', 'The new clip is added to the project. Describe what happens next, then generate it.'] },
+      repair: { title: 'Local video repair', summary: 'Regenerate a painted region within a selected time range, or choose to repair the full frame.', entry: 'Generate video → Local repair below the preview', steps: ['Generate a video, then choose Local repair below the preview.', 'Set a time range by dragging the timeline handles. Paint the area to repair, or choose Full frame repair.', 'Adjust the mask with the brush, eraser or clear action, then choose Start repair.'] },
+    },
+  },
+  items: {
+    video: {
+      title: 'Bring your first shot to life',
+      intro: 'Start with text to video, then explore image keyframes and references.',
+      modes: 'Text to video / Image to video / Omni-reference',
+      steps: [
+        { title: 'Create a project and clip', detail: 'Open Video Studio from the launcher. Choose New project and a local save folder, then Add clip. Select the clip you want to edit.', action: 'New project → Add clip' },
+        { title: 'Choose a generation mode', detail: 'Choose Text to video on the right to start without images. For Image to video, select first, last, or first and last frames and add the corresponding images. Use Omni-reference for multiple reference types.', action: 'Start with: Text to video' },
+        { title: 'Describe a shot', detail: 'Describe the subject, action, scene and camera movement in the clip prompt. Use one clip for each shot; add another clip when the scene changes.', action: 'Example: A duck walks across grass; the camera follows slowly.' },
+        { title: 'Generate and preview', detail: 'Choose Generate video and wait for completion. Play the result in the preview and download the current video. Existing results can also be used for clip continuation or face refinement.', action: 'Generate video → Preview → Download' },
+      ],
+      tip: 'Choose Image to video for first and last frames. Use Time guides for assets at multiple timestamps and Control video for a pose or depth track.',
+    },
+    image: {
+      title: 'Turn a description into an image',
+      intro: 'Text to image and image editing use different inputs.',
+      modes: 'Text to image / Image editing',
+      steps: [
+        { title: 'Create an image project', detail: 'Open Image Studio, choose New image project and a save folder. Choose Create image, or create an item from the Images node on the left.', action: 'New image project → Create image' },
+        { title: 'Choose mode and inputs', detail: 'Choose Text to image for a new picture. For changes to an existing picture, choose Image editing and add a source image. Add reference images when needed; they belong to this image project.', action: 'Text to image, or Image editing + Source image' },
+        { title: 'Describe the image or edit', detail: 'For a new image, describe the subject, environment, composition and style. For editing, say what to change, what to preserve and the result you want. Type @ to reference source and reference images.', action: 'Example: Change the sky to sunset; keep the subject unchanged.' },
+        { title: 'Generate and review', detail: 'Choose Generate image, then inspect the result in the central preview. Revise the prompt and generate again if needed. Download the current image when ready.', action: 'Generate image → Preview → Download' },
+      ],
+      tip: 'Image editing needs a source image first. To use an output in another studio, save the file and manually import it there.',
+    },
+    music: {
+      title: 'Make a song or an instrumental',
+      intro: 'Describe the music. In Song mode, supply the lyrics too.',
+      modes: 'Song / Instrumental',
+      steps: [
+        { title: 'Create a project and song', detail: 'Open Music Studio, choose New music project and a save location, then Add song to create a song item.', action: 'New music project → Add song' },
+        { title: 'Choose song or instrumental', detail: 'Choose Song or Instrumental on the right. Song needs lyrics; Instrumental does not. Select a saved musical style, or choose Custom and enter your own description.', action: 'Song: Lyrics + Description; Instrumental: Description' },
+        { title: 'Describe and write', detail: 'Describe genre, mood, vocals, tempo, instruments and arrangement. Organize song lyrics with tags such as [Verse] and [Chorus]. Instrumental mode does not need lyrics.', action: 'Example: Warm acoustic guitar, a gentle rhythm, instrumental.' },
+        { title: 'Generate and listen', detail: 'Choose Generate song or Generate instrumental. Listen in the preview when complete, then download the current music. Save frequently used descriptions as musical styles in this project.', action: 'Generate → Listen → Download' },
+      ],
+      tip: 'Song mode needs both lyrics and a music description. Instrumental mode needs a music description only.',
+    },
+    voice: {
+      title: 'Prepare a voice, then give it words',
+      intro: 'Create speech from text, or convert existing audio to a target voice.',
+      modes: 'Text to speech / Voice conversion',
+      steps: [
+        { title: 'Create a project and voice', detail: 'Open Voice Studio and choose New voice project. Under Voice profiles, choose Import voice profile and enter a name. Use a recording of the reference transcript shown in the app and select its reference segment.', action: 'New voice project → Voice profiles → Import voice profile' },
+        { title: 'Add a clip and choose mode', detail: 'Choose Add voice clip. Select Text to speech and a voice profile on the right. To change the voice of an existing recording, choose Voice conversion, add source audio and select a target voice.', action: 'Text to speech, or Voice conversion + Source audio' },
+        { title: 'Add text or source audio', detail: 'For text to speech, enter the words you want to hear. For voice conversion, add the source audio and make sure a target voice profile is selected.', action: 'Example: Welcome to MeristemForge. Let’s create something today.' },
+        { title: 'Generate and listen', detail: 'Choose Generate speech or Voice conversion. Wait for completion, listen in the preview and download the current audio when ready.', action: 'Generate speech / Voice conversion → Listen → Download' },
+      ],
+      tip: 'The reference segment must include the full transcript supplied by the app and be no longer than 30 seconds. Language settings control pronunciation; they do not translate text.',
+    },
+  },
+}

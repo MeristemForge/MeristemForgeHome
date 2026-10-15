@@ -27,23 +27,23 @@ function renderDownload(release: ReleaseInfo | null, loading = false) {
 }
 
 describe('ReleaseDownload', () => {
-  it('shows a disabled checking button for a loading null release', () => {
+  it('shows a non-interactive status while checking a null release', () => {
     const wrapper = renderDownload(null, true)
     const control = wrapper.get('[data-testid="hero-download"]')
 
-    expect(control.element.tagName).toBe('BUTTON')
-    expect(control.attributes('disabled')).toBeDefined()
-    expect(control.text()).toBe('检查最新版本...')
+    expect(control.element.tagName).toBe('SPAN')
+    expect(control.attributes('role')).toBe('status')
+    expect(control.text()).toBe('正在检查发布状态...')
   })
 
-  it('shows a disabled pending status without an anchor', () => {
+  it('shows a clear pending status without an anchor or button', () => {
     const wrapper = renderDownload(pendingRelease)
     const control = wrapper.get('[data-testid="hero-download"]')
 
     expect(wrapper.find('a').exists()).toBe(false)
-    expect(control.element.tagName).toBe('BUTTON')
-    expect(control.attributes('disabled')).toBeDefined()
-    expect(control.text()).toBe('暂未发布')
+    expect(control.element.tagName).toBe('SPAN')
+    expect(control.attributes('role')).toBe('status')
+    expect(control.text()).toContain('Windows 安装包即将开放')
   })
 
   it('does not expose an anchor when a pending release has an unsafe URL', () => {
@@ -51,8 +51,8 @@ describe('ReleaseDownload', () => {
     const control = wrapper.get('[data-testid="hero-download"]')
 
     expect(wrapper.find('a').exists()).toBe(false)
-    expect(control.element.tagName).toBe('BUTTON')
-    expect(control.text()).toBe('暂未发布')
+    expect(control.element.tagName).toBe('SPAN')
+    expect(control.text()).toContain('Windows 安装包即将开放')
   })
 
   it('does not expose an anchor when a published release has an unsafe URL', () => {
@@ -67,9 +67,9 @@ describe('ReleaseDownload', () => {
     const control = wrapper.get('[data-testid="hero-download"]')
 
     expect(wrapper.find('a').exists()).toBe(false)
-    expect(control.element.tagName).toBe('BUTTON')
-    expect(control.attributes('disabled')).toBeDefined()
-    expect(control.text()).toBe('暂未发布')
+    expect(control.element.tagName).toBe('SPAN')
+    expect(control.attributes('role')).toBe('status')
+    expect(control.text()).toContain('Windows 安装包即将开放')
   })
 
   it('renders a published release as a downloadable anchor', () => {
@@ -88,7 +88,7 @@ describe('ReleaseDownload', () => {
     expect(link.attributes('download')).toBe('MeristemForge-Setup-0.1.0.exe')
   })
 
-  it('keeps a published release disabled while loading', () => {
+  it('shows a checking status for a published release while loading', () => {
     const release: ReleaseInfo = {
       ...pendingRelease,
       status: 'published',
@@ -100,8 +100,8 @@ describe('ReleaseDownload', () => {
     const control = wrapper.get('[data-testid="hero-download"]')
 
     expect(wrapper.find('a').exists()).toBe(false)
-    expect(control.element.tagName).toBe('BUTTON')
-    expect(control.attributes('disabled')).toBeDefined()
-    expect(control.text()).toBe('检查最新版本...')
+    expect(control.element.tagName).toBe('SPAN')
+    expect(control.attributes('role')).toBe('status')
+    expect(control.text()).toBe('正在检查发布状态...')
   })
 })

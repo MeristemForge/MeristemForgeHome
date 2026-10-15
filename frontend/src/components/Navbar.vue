@@ -19,7 +19,8 @@ function toggleLocale() {
       <div class="nav-links">
         <a href="#capabilities">{{ t('nav.capabilities') }}</a>
         <a href="#workflow">{{ t('nav.workflow') }}</a>
-        <a href="#about">{{ t('nav.about') }}</a>
+        <a href="#guide">{{ t('nav.guide') }}</a>
+        <a href="#release">{{ t('nav.release') }}</a>
       </div>
       <div class="nav-actions">
         <button

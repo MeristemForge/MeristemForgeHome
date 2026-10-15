@@ -22,11 +22,11 @@ const statusLabel = computed(() => t(`release.status.${props.release?.status ?? 
     <div class="release__panel glass-panel">
       <p class="eyebrow">{{ t('release.eyebrow') }}</p>
       <h2>{{ t('release.title') }}</h2>
-      <p>{{ t('release.description') }}</p>
+      <p>{{ t(release?.status === 'published' ? 'release.publishedDescription' : 'release.pendingDescription') }}</p>
 
       <div v-if="release" class="release-meta">
         <span>{{ t('release.version') }} {{ release.version }}</span>
-        <span>{{ release.platform }}</span>
+        <span>{{ release.platform === 'windows-x64' ? t('release.platform') : release.platform }}</span>
         <span>{{ statusLabel }}</span>
         <span v-if="release.size">{{ release.size }}</span>
         <span v-if="release.publishedAt">{{ release.publishedAt }}</span>
@@ -35,6 +35,7 @@ const statusLabel = computed(() => t(`release.status.${props.release?.status ?? 
       <ul class="release-notes">
         <li v-for="note in localizedNotes" :key="note">{{ note }}</li>
       </ul>
+      <a class="release-back" href="#top">{{ t('release.backToDownload') }} <span aria-hidden="true">↑</span></a>
     </div>
   </section>
 </template>

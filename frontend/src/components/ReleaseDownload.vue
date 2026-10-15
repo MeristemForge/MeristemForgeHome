@@ -25,13 +25,14 @@ const canDownload = computed(
   >
     {{ $t('release.download') }} {{ release?.version }}
   </a>
-  <button
+  <span
     v-else
-    type="button"
-    class="download-status"
+    class="download-status download-status--pending"
     data-testid="hero-download"
-    disabled
+    role="status"
+    aria-live="polite"
   >
-    {{ loading ? $t('release.checking') : $t('release.status.pending') }}
-  </button>
+    <span class="download-status__dot" aria-hidden="true"></span>
+    {{ loading ? $t('release.checking') : $t('release.pendingCta') }}
+  </span>
 </template>
