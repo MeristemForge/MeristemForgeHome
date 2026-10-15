@@ -44,7 +44,7 @@ export const guideZh: GuideMessages = {
       steps: [
         { title: '创建图片项目', detail: '进入“图片创作”，点击“新建图片项目”，选择保存目录。点击“创建图片”，或在左侧“图片”节点创建一张图片条目。', action: '新建图片项目 → 创建图片' },
         { title: '选择模式与输入', detail: '新图选择“文本生图”。修改已有图片时选择“图片编辑”，添加原始图；需要额外视觉信息时再添加参考图。原始图与参考图在当前图片项目中管理。', action: '文本生图，或图片编辑 + 原始图' },
-        { title: '描述画面或修改', detail: '文本生图时描述主体、环境、构图和风格。图片编辑时写清楚要修改的部分、保留的部分和目标效果；输入 @ 可以引用原始图和参考图。', action: '示例：把原始图中的天空改成日落，保留主体' },
+        { title: '描述画面或修改', detail: '文本生图时描述主体、环境、构图和风格。图片编辑时写清楚要修改的部分、保留的部分和目标效果；输入 {\'@\'} 可以引用原始图和参考图。', action: '示例：把原始图中的天空改成日落，保留主体' },
         { title: '生成并查看结果', detail: '点击“生成图片”，完成后在中央预览区查看。根据结果修改提示词再次生成，满意后下载当前图片。', action: '生成图片 → 查看预览 → 下载' },
       ],
       tip: '图片编辑必须先添加原始图。需要在其他创作模块使用这张图时，先保存文件，再到目标模块手动导入。',
@@ -117,7 +117,7 @@ export const guideEn: GuideMessages = {
       steps: [
         { title: 'Create an image project', detail: 'Open Image Studio, choose New image project and a save folder. Choose Create image, or create an item from the Images node on the left.', action: 'New image project → Create image' },
         { title: 'Choose mode and inputs', detail: 'Choose Text to image for a new picture. For changes to an existing picture, choose Image editing and add a source image. Add reference images when needed; they belong to this image project.', action: 'Text to image, or Image editing + Source image' },
-        { title: 'Describe the image or edit', detail: 'For a new image, describe the subject, environment, composition and style. For editing, say what to change, what to preserve and the result you want. Type @ to reference source and reference images.', action: 'Example: Change the sky to sunset; keep the subject unchanged.' },
+        { title: 'Describe the image or edit', detail: 'For a new image, describe the subject, environment, composition and style. For editing, say what to change, what to preserve and the result you want. Type {\'@\'} to reference source and reference images.', action: 'Example: Change the sky to sunset; keep the subject unchanged.' },
         { title: 'Generate and review', detail: 'Choose Generate image, then inspect the result in the central preview. Revise the prompt and generate again if needed. Download the current image when ready.', action: 'Generate image → Preview → Download' },
       ],
       tip: 'Image editing needs a source image first. To use an output in another studio, save the file and manually import it there.',
