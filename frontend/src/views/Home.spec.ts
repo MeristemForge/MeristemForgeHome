@@ -49,7 +49,7 @@ describe('Home', () => {
     expect(checkInstallerSpy).toHaveBeenCalledTimes(1)
     expect(wrapper.findAll('[data-testid="hero-download"]')).toHaveLength(1)
     expect(wrapper.get('a[data-testid="hero-download"]').attributes('href'))
-      .toBe('/downloads/MeristemForge-Setup.exe')
+      .toBe('/MeristemForge-Setup.exe')
     expect(wrapper.find('#release [data-testid="hero-download"]').exists()).toBe(false)
   })
 

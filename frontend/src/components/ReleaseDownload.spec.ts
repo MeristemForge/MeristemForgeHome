@@ -33,7 +33,7 @@ describe('ReleaseDownload', () => {
     const link = wrapper.get('[data-testid="hero-download"]')
     expect(link.element.tagName).toBe('A')
     expect(link.text()).toBe('下载 Windows 版')
-    expect(link.attributes('href')).toBe('/downloads/MeristemForge-Setup.exe')
+    expect(link.attributes('href')).toBe('/MeristemForge-Setup.exe')
     expect(link.attributes('download')).toBe('MeristemForge-Setup.exe')
   })
 

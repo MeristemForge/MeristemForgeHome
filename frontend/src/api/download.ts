@@ -1,5 +1,5 @@
 export const WINDOWS_INSTALLER_FILENAME = 'MeristemForge-Setup.exe'
-export const WINDOWS_INSTALLER_URL = `/downloads/${WINDOWS_INSTALLER_FILENAME}`
+export const WINDOWS_INSTALLER_URL = `/${WINDOWS_INSTALLER_FILENAME}`
 
 export async function checkInstallerAvailability(): Promise<boolean> {
   const controller = new AbortController()
