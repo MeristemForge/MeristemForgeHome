@@ -1,20 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import type { ReleaseInfo } from '@/api/release'
 
-const props = defineProps<{ release: ReleaseInfo | null }>()
-const { locale, t } = useI18n()
-
-const localizedNotes = computed(() => {
-  const fallback = [t('release.note1'), t('release.note2'), t('release.note3')]
-  if (!props.release) return fallback
-
-  const key = locale.value === 'en' ? 'en' : 'zh'
-  return props.release.notes[key].length ? props.release.notes[key] : fallback
-})
-
-const statusLabel = computed(() => t(`release.status.${props.release?.status ?? 'pending'}`))
+defineProps<{ available: boolean; loading: boolean }>()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -22,18 +10,17 @@ const statusLabel = computed(() => t(`release.status.${props.release?.status ?? 
     <div class="release__panel glass-panel">
       <p class="eyebrow">{{ t('release.eyebrow') }}</p>
       <h2>{{ t('release.title') }}</h2>
-      <p>{{ t(release?.status === 'published' ? 'release.publishedDescription' : 'release.pendingDescription') }}</p>
+      <p>{{ t(loading ? 'release.checking' : available ? 'release.publishedDescription' : 'release.pendingDescription') }}</p>
 
-      <div v-if="release" class="release-meta">
-        <span>{{ t('release.version') }} {{ release.version }}</span>
-        <span>{{ release.platform === 'windows-x64' ? t('release.platform') : release.platform }}</span>
-        <span>{{ statusLabel }}</span>
-        <span v-if="release.size">{{ release.size }}</span>
-        <span v-if="release.publishedAt">{{ release.publishedAt }}</span>
+      <div class="release-meta">
+        <span>{{ t('release.platform') }}</span>
+        <span>{{ loading ? t('release.checking') : t(available ? 'release.status.published' : 'release.status.pending') }}</span>
       </div>
 
       <ul class="release-notes">
-        <li v-for="note in localizedNotes" :key="note">{{ note }}</li>
+        <li>{{ t('release.note1') }}</li>
+        <li>{{ t('release.note2') }}</li>
+        <li>{{ t('release.note3') }}</li>
       </ul>
       <a class="release-back" href="#top">{{ t('release.backToDownload') }} <span aria-hidden="true">↑</span></a>
     </div>

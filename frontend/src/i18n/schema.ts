@@ -99,7 +99,6 @@ export interface MessageSchema {
       pending: string
       published: string
     }
-    version: string
     note1: string
     note2: string
     note3: string

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { fetchLatestRelease, type ReleaseInfo } from '@/api/release'
+import { checkInstallerAvailability } from '@/api/download'
 import CapabilityCards from '@/components/CapabilityCards.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import ReleaseSection from '@/components/ReleaseSection.vue'
@@ -8,13 +8,13 @@ import WorkflowSection from '@/components/WorkflowSection.vue'
 import CreationGuide from '@/components/CreationGuide.vue'
 import type { CapabilityKey } from '@/i18n/schema'
 
-const release = ref<ReleaseInfo | null>(null)
+const installerAvailable = ref(false)
 const loading = ref(true)
 const guideModule = ref<CapabilityKey>('video')
 
 onMounted(async () => {
   try {
-    release.value = await fetchLatestRelease()
+    installerAvailable.value = await checkInstallerAvailability()
   } finally {
     loading.value = false
   }
@@ -22,9 +22,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <HeroSection :release="release" :loading="loading" />
+  <HeroSection :available="installerAvailable" :loading="loading" />
   <CapabilityCards @learn="guideModule = $event" />
   <WorkflowSection />
   <CreationGuide v-model="guideModule" />
-  <ReleaseSection :release="release" />
+  <ReleaseSection :available="installerAvailable" :loading="loading" />
 </template>

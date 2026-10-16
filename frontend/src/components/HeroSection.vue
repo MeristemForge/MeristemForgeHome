@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import type { ReleaseInfo } from '@/api/release'
 import ReleaseDownload from './ReleaseDownload.vue'
 
-defineProps<{ release: ReleaseInfo | null; loading: boolean }>()
+defineProps<{ available: boolean; loading: boolean }>()
 const { t } = useI18n()
 </script>
 
@@ -14,7 +13,7 @@ const { t } = useI18n()
       <h1>{{ t('hero.title') }}</h1>
       <p class="hero__description">{{ t('hero.subtitle') }}</p>
       <div class="hero__actions">
-        <ReleaseDownload :release="release" :loading="loading" />
+        <ReleaseDownload :available="available" :loading="loading" />
         <a class="secondary-action" href="#guide">{{ t('hero.explore') }}</a>
       </div>
       <p class="hero__availability">{{ t('hero.availability') }}</p>

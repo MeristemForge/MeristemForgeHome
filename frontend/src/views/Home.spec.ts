@@ -1,8 +1,7 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { createI18n } from 'vue-i18n'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import type { ReleaseInfo } from '@/api/release'
-import * as releaseApi from '@/api/release'
+import * as downloadApi from '@/api/download'
 import en from '@/i18n/en'
 import zh from '@/i18n/zh'
 import App from '@/App.vue'
@@ -39,26 +38,18 @@ describe('Home', () => {
     expect(wrapper.get('#release')).toBeTruthy()
   })
 
-  it('loads release data once and renders one hero download control', async () => {
-    const pendingRelease: ReleaseInfo = {
-      version: '0.1.0',
-      platform: 'windows-x64',
-      filename: 'MeristemForge-Setup-0.1.0.exe',
-      status: 'pending',
-      size: null,
-      publishedAt: null,
-      downloadUrl: null,
-      notes: { zh: [], en: [] },
-    }
-    const fetchLatestReleaseSpy = vi
-      .spyOn(releaseApi, 'fetchLatestRelease')
-      .mockResolvedValue(pendingRelease)
+  it('checks the installer once and renders one hero download control', async () => {
+    const checkInstallerSpy = vi
+      .spyOn(downloadApi, 'checkInstallerAvailability')
+      .mockResolvedValue(true)
 
     const wrapper = renderHome()
     await flushPromises()
 
-    expect(fetchLatestReleaseSpy).toHaveBeenCalledTimes(1)
+    expect(checkInstallerSpy).toHaveBeenCalledTimes(1)
     expect(wrapper.findAll('[data-testid="hero-download"]')).toHaveLength(1)
+    expect(wrapper.get('a[data-testid="hero-download"]').attributes('href'))
+      .toBe('/downloads/MeristemForge-Setup.exe')
     expect(wrapper.find('#release [data-testid="hero-download"]').exists()).toBe(false)
   })
 

@@ -1,29 +1,22 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { isSafeDownloadUrl, type ReleaseInfo } from '@/api/release'
+import { WINDOWS_INSTALLER_FILENAME, WINDOWS_INSTALLER_URL } from '@/api/download'
 
-const props = defineProps<{
-  release: ReleaseInfo | null
+defineProps<{
+  available: boolean
   loading: boolean
 }>()
 
-const canDownload = computed(
-  () =>
-    !props.loading &&
-    props.release?.status === 'published' &&
-    isSafeDownloadUrl(props.release?.downloadUrl),
-)
 </script>
 
 <template>
   <a
-    v-if="canDownload"
+    v-if="available && !loading"
     class="download-status"
-    :href="release?.downloadUrl ?? undefined"
-    :download="release?.filename"
+    :href="WINDOWS_INSTALLER_URL"
+    :download="WINDOWS_INSTALLER_FILENAME"
     data-testid="hero-download"
   >
-    {{ $t('release.download') }} {{ release?.version }}
+    {{ $t('release.download') }}
   </a>
   <span
     v-else

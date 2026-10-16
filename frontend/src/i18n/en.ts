@@ -3,7 +3,7 @@ import { guideEn } from './guides'
 
 const en = {
   meta: { title: 'MeristemForge · All-in-One AI Creative Workspace' },
-  nav: { capabilities: 'Studios', workflow: 'Get Ready', guide: 'Learn', release: 'Release', about: 'About', language: 'Switch to Chinese', ariaLabel: 'Primary navigation' },
+  nav: { capabilities: 'Studios', workflow: 'Get Ready', guide: 'Learn', release: 'Download', about: 'About', language: 'Switch to Chinese', ariaLabel: 'Primary navigation' },
   hero: {
     eyebrow: 'An All-in-One AI Creative Workspace',
     title: 'Give Every Idea a Shape of Its Own',
@@ -39,17 +39,16 @@ const en = {
   guide: guideEn,
   release: {
     eyebrow: 'MeristemForge for Windows',
-    title: 'Windows Release Information',
-    description: 'Check the public release status and release notes.',
-    pendingDescription: 'The public installer has not been released yet. The Windows download will open at the top of this page when available.',
-    publishedDescription: 'The public release is available. Download the Windows installer at the top of this page.',
+    title: 'Download for Windows',
+    description: 'Download the MeristemForge installer for Windows x64.',
+    pendingDescription: 'The Windows installer is currently unavailable. Please try again later.',
+    publishedDescription: 'The Windows installer is ready. Download it directly at the top of this page.',
     backToDownload: 'Back to the download at the top',
     platform: 'Windows x64',
     download: 'Download Windows',
-    checking: 'Checking release status...',
-    pendingCta: 'Windows installer coming soon',
-    status: { pending: 'Coming Soon', published: 'Published' },
-    version: 'Version',
+    checking: 'Checking installer...',
+    pendingCta: 'Windows installer unavailable',
+    status: { pending: 'Unavailable', published: 'Available' },
     note1: 'Create video, images, music, and voice',
     note2: 'Run locally with your files under your control',
     note3: 'Continuous improvements for creators',
